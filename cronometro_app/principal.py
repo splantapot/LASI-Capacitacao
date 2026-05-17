@@ -28,7 +28,7 @@ def exibir_menu():
         (1, "Iniciar cronômetro" if get_estado() == Estado.PARADO else "Reiniciar", iniciar_cronometro),
         (2, "Despausar" if get_estado() == Estado.PAUSADO else "Pausar", pausar_cronometro),
         (3, "Definir tempo", definir_duracao),
-        (4, "Testar alerta de término", encerrar_cronometro),
+        (4, "Encerrar", encerrar_cronometro),
         (5, "Sair", lambda: encerrar()),
         # (5, "Alertar término"),
     ]
@@ -49,8 +49,9 @@ def exibir_cronometro():
     
     # Calcula quanto tempo falta
     tempo_restante = get_tempo_final() - get_tempo_atual()
+    tempo_restante_str = str(tempo_restante).split(".")[0]  # Remove os microsegundos
     
-    print(f"\nTempo restante: {tempo_restante} segundos")
+    print(f"\nTempo restante: {tempo_restante_str}")
     print(f"Término previsto: {get_tempo_final().strftime('%H:%M:%S')}")
     print("\n[Pressione ENTER a qualquer momento para pausar/voltar ao menu]")
     
