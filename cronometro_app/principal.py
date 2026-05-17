@@ -1,8 +1,7 @@
 from prompt_toolkit import choice
-from cronometro_app import get_duracao
+from cronometro_app import get_duracao, estado_atual
 from cronometro_app.acoes import definir_duracao
 from cronometro_app.utilitarios import limpar_tela, get_titulo
-
 
 # ====== Exibição de menu =====================================================
 

@@ -1,14 +1,15 @@
 from prompt_toolkit import prompt
 from prompt_toolkit.validation import Validator
-from cronometro_app import DURACAO, get_duracao, set_duracao
-from cronometro_app.utilitarios import limpar_tela, get_titulo
+from cronometro_app import get_duracao, set_duracao
+from cronometro_app.utilitarios import limpar_tela, get_titulo, to_int
 
 # ==========================================
 #   Definição de duração
 # ==========================================
+
 validacao_horario = Validator.from_callable(
-    lambda texto: texto.isdigit() or texto == "",
-    error_message="Por favor, digite um número natural ou deixe em branco.",
+    lambda texto: (texto.isdigit() or texto == "") and (to_int(texto) < 60),
+    error_message="Por favor, digite um número natural menor que 60 ou deixe em branco.",
 )
 
 def definir_duracao():
@@ -24,9 +25,9 @@ def definir_duracao():
         placeholder="0", validator=validacao_horario, validate_while_typing=True)
     
     # Converte valores para inteiros ou 0 para entradas vazias.
-    horas = int(horas) if horas else 0
-    minutos = int(minutos) if minutos else 0
-    segundos = int(segundos) if segundos else 0
+    horas = to_int(horas) if horas else 0
+    minutos = to_int(minutos) if minutos else 0
+    segundos = to_int(segundos) if segundos else 0
 
     print(f"\nDuração definida => {horas}h {minutos}m {segundos}s\n")
     confirm = prompt("Confirmar definição? (s/n): ").strip().lower()

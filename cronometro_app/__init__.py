@@ -5,6 +5,13 @@ import datetime
 DURACAO: List[int,int,int] = [0, 0, 0]  # [horas, minutos, segundos]
 tempo_final = datetime.time(0, 0, 0).isoformat(timespec='seconds')  # Armazena tempo final do cronômetro
 
+# Enum de estados do cronômetro
+class Estado:
+    PARADO = 0
+    RODANDO = 1
+    PAUSADO = 2
+estado_atual = Estado.PARADO  # Estado inicial do cronômetro
+
 def get_duracao():
     """Formata a duração do cronômetro para exibição."""
     horas, minutos, segundos = DURACAO
