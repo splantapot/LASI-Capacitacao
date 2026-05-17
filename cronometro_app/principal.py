@@ -1,13 +1,10 @@
-import subprocess
-import os
 from prompt_toolkit import choice
-from cronometro_app import OS_WIN, duracao
+from cronometro_app import get_duracao
+from cronometro_app.acoes import definir_duracao
+from cronometro_app.utilitarios import limpar_tela, get_titulo
 
-def limpar_tela():
-    """Limpa a tela do terminal."""
-    cmd = "cls" if OS_WIN else "clear"
-    subprocess.run([cmd], shell=True)
 
+# ====== Exibição de menu =====================================================
 def exibir_menu():
     """Exibe o menu e seleciona a ação a ser executada."""
 
@@ -23,21 +20,25 @@ def exibir_menu():
         1: lambda: print("Iniciando cronômetro..."),
         2: lambda: print("Pausando cronômetro..."),
         3: lambda: print("Reiniciando cronômetro..."),
-        4: lambda: print("Definindo tempo...")
+        4: definir_duracao,
     }
 
     result = choice(
-        message=f"""
-=============== MENU ===============
-Duração atual: {duracao} segundos
+        message=
+f"""
+{get_titulo("Cronômetro")}
+Duração atual: {get_duracao()}
 Selecione uma opção:
 """,
         options=OPCOES,
     )
-
+    print("\n")  # Adiciona uma linha em branco para melhor formatação
+    # Obtem e chama a ação correspondente
     ACOES.get(result, lambda: print("Opção inválida"))()
 
+# ====== Execução principal ===================================================
 def executar_app():
     """Executa a aplicação do cronômetro."""
-    limpar_tela()
-    exibir_menu()
+    while True:
+        limpar_tela()
+        exibir_menu()

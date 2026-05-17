@@ -27,6 +27,28 @@ Criar um cronômetro para sessões de estudo;
 # Desenvolvimento
 
 ## Como usar
+
+## Lógica de temporização
+Pensei na lógica de temporização utilizando timestamp, pois além de não travar o fluxo da aplicação, permite melhor controle do tempo decorrido.
+
+- Definir duração
+
+Definimos a duração em HH:MM:SS
+
+- Iniciar
+
+O timestamp final é armazenado. (TEMPO_FINAL = TEMPO_ATUAL + DURACAO);
+
+- Pausar
+
+O timestamp do início da pausa é salvo. (TEMPO_PAUSE = TEMPO_ATUAL);
+
+- Despausar
+
+O timestamp atual é comparado com o início da pausa, para encontrar a variação de tempo. (DT = TEMPO_ATUAL - TEMPO_PAUSE);
+Em seguida, atualiza o timestamp final somando com a variação. (TEMPO_FINAL = TEMPO_FINAL + DT)
+
+
 ## Funcionalidades
 
 ## Minhas pesquisas
