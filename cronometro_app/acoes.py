@@ -1,6 +1,6 @@
 from prompt_toolkit import prompt
 from prompt_toolkit.validation import Validator
-from cronometro_app import DURACAO, get_duracao, set_duracao
+from cronometro_app import set_duracao
 from cronometro_app.utilitarios import limpar_tela, get_titulo
 
 # ==========================================

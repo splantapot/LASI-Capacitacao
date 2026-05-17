@@ -8,19 +8,19 @@ from cronometro_app.utilitarios import limpar_tela, get_titulo
 def exibir_menu():
     """Exibe o menu e seleciona a ação a ser executada."""
 
-    OPCOES = [
-        (1, "Iniciar cronômetro"),
-        (2, "Pausar"),
-        (3, "Reiniciar"),
-        (4, "Definir tempo")
+    OPCOES_PARADO = [
+        (1, "Iniciar cronômetro", lambda: print("Iniciando cronômetro...")),
+        (2, "Pausar", lambda: print("Pausando cronômetro...")),
+        (3, "Reiniciar", lambda: print("Reiniciando cronômetro...")),
+        (4, "Definir tempo", definir_duracao)
         # (5, "Alertar término"),
     ]
 
     ACOES = {
-        1: lambda: print("Iniciando cronômetro..."),
-        2: lambda: print("Pausando cronômetro..."),
-        3: lambda: print("Reiniciando cronômetro..."),
-        4: definir_duracao,
+        0: lambda: print("Iniciando cronômetro..."),
+        1: lambda: print("Pausando cronômetro..."),
+        2: lambda: print("Reiniciando cronômetro..."),
+        3: definir_duracao,
     }
 
     result = choice(
@@ -30,11 +30,10 @@ f"""
 Duração atual: {get_duracao()}
 Selecione uma opção:
 """,
-        options=OPCOES,
+        options= [(opcao[0], opcao[1]) for opcao in OPCOES_PARADO],
     )
-    print("\n")  # Adiciona uma linha em branco para melhor formatação
-    # Obtem e chama a ação correspondente
-    ACOES.get(result, lambda: print("Opção inválida"))()
+    print("\n")
+    OPCOES_PARADO[result-1][2]()  # Chama a função associada à opção selecionada
 
 # ====== Execução principal ===================================================
 def executar_app():
