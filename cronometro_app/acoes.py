@@ -13,7 +13,7 @@ validacao_horario = Validator.from_callable(
 
 def definir_duracao():
     limpar_tela()
-    print(f"\n{get_titulo('Definir Duração')}")
+    print(f"{get_titulo('Definir Duração')}\n")
 
     # Pede que o usuário informe os valores.
     horas = prompt("Digite as horas: ",

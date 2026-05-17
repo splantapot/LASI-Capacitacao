@@ -5,6 +5,11 @@ from cronometro_app.utilitarios import limpar_tela, get_titulo
 
 
 # ====== Exibição de menu =====================================================
+
+def gerar_mensagem_menu():
+    """Gera a mensagem do menu com a duração atual do cronômetro."""
+    return (f"{get_titulo("Cronômetro")}\nDuração atual: {get_duracao()}\nSelecione uma opção:\n")
+
 def exibir_menu():
     """Exibe o menu e seleciona a ação a ser executada."""
 
@@ -16,23 +21,12 @@ def exibir_menu():
         # (5, "Alertar término"),
     ]
 
-    ACOES = {
-        0: lambda: print("Iniciando cronômetro..."),
-        1: lambda: print("Pausando cronômetro..."),
-        2: lambda: print("Reiniciando cronômetro..."),
-        3: definir_duracao,
-    }
-
     result = choice(
-        message=
-f"""
-{get_titulo("Cronômetro")}
-Duração atual: {get_duracao()}
-Selecione uma opção:
-""",
+        message=gerar_mensagem_menu(),
         options= [(opcao[0], opcao[1]) for opcao in OPCOES_PARADO],
     )
-    print("\n")
+
+    print("\n")     # Apenas pelo visual
     OPCOES_PARADO[result-1][2]()  # Chama a função associada à opção selecionada
 
 # ====== Execução principal ===================================================
