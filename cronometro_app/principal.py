@@ -14,9 +14,9 @@ def exibir_menu():
     """Exibe o menu e seleciona a ação a ser executada."""
 
     OPCOES_PARADO = [
-        (1, "Iniciar cronômetro", lambda: print("Iniciando cronômetro...")),
-        (2, "Pausar", lambda: print("Pausando cronômetro...")),
-        (3, "Reiniciar", lambda: print("Reiniciando cronômetro...")),
+        (1, "Iniciar cronômetro", lambda: print("Iniciando cronômetro... (função a ser implementada)")),
+        (2, "Pausar", lambda: print("Pausando cronômetro... (função a ser implementada)")),
+        (3, "Reiniciar", lambda: print("Reiniciando cronômetro... (função a ser implementada)")),
         (4, "Definir tempo", definir_duracao)
         # (5, "Alertar término"),
     ]

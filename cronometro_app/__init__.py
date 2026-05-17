@@ -1,25 +1,15 @@
+from typing import List
 import datetime
 
 # Variável global para armazenar a duração do cronômetro em segundos
-duracao = datetime.time(0, 0, 0).isoformat(timespec='seconds')
-
-# Enum para estado do cronometro
-class Estado:
-    PARADO = 0
-    RODANDO = 1
-    PAUSADO = 2
-
-estado_atual = Estado.PARADO
-
-# Funções para manipular a duração do cronômetro
+DURACAO: List[int,int,int] = [0, 0, 0]  # [horas, minutos, segundos]
+tempo_final = datetime.time(0, 0, 0).isoformat(timespec='seconds')  # Armazena tempo final do cronômetro
 
 def get_duracao():
     """Formata a duração do cronômetro para exibição."""
-    global duracao
-    horas, minutos, segundos = duracao.split(':')
+    horas, minutos, segundos = DURACAO
     return f"{horas}:{minutos}:{segundos}"
 
 def set_duracao(horas: int, minutos: int, segundos: int):
     """Define a duração do cronômetro."""
-    global duracao
-    duracao = datetime.time(horas, minutos, segundos).isoformat(timespec='seconds')
+    DURACAO[0], DURACAO[1], DURACAO[2] = horas, minutos, segundos
