@@ -8,7 +8,6 @@ def executando():
 
 def encerrar():
     global loop
-    print("Encerrando o cronômetro. Até a próxima!")
     loop = False
 
 # Variável global para armazenar a duração do cronômetro em segundos

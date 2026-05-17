@@ -1,8 +1,11 @@
 import time, sys
-from prompt_toolkit import choice, prompt
-from cronometro_app import encerrar, executando, get_duracao, get_tempo_final, Estado, get_estado, set_estado
+from prompt_toolkit import choice
+
+from cronometro_app import encerrar, executando
+from cronometro_app import get_duracao, get_tempo_final, Estado, get_estado
 from cronometro_app.acoes import definir_duracao, iniciar_cronometro, pausar_cronometro, encerrar_cronometro
-from cronometro_app.utilitarios import get_tempo_atual, limpar_tela, get_titulo
+
+from cronometro_app.utilitarios import get_tempo_atual, limpar_tela, get_titulo, tecla_pressionada
 
 # ====== Exibição de menu =====================================================
 
@@ -22,7 +25,7 @@ def exibir_menu():
     """Exibe o menu e seleciona a ação a ser executada."""
 
     OPCOES = [
-        (1, "Reiniciar" if get_estado() == Estado.RODANDO else "Iniciar cronômetro", iniciar_cronometro),
+        (1, "Iniciar cronômetro" if get_estado() == Estado.PARADO else "Reiniciar", iniciar_cronometro),
         (2, "Despausar" if get_estado() == Estado.PAUSADO else "Pausar", pausar_cronometro),
         (3, "Definir tempo", definir_duracao),
         (4, "Testar alerta de término", encerrar_cronometro),
@@ -46,16 +49,15 @@ def exibir_cronometro():
     
     # Calcula quanto tempo falta
     tempo_restante = get_tempo_final() - get_tempo_atual()
-    segundos_restantes = max(0, int(tempo_restante.total_seconds()))
     
-    print(f"\nTempo restante: {segundos_restantes} segundos")
+    print(f"\nTempo restante: {tempo_restante} segundos")
     print(f"Término previsto: {get_tempo_final().strftime('%H:%M:%S')}")
     print("\n[Pressione ENTER a qualquer momento para pausar/voltar ao menu]")
     
     # Dorme por 1 segundo dividindo em mini-pausas para verificar o teclado rapidamente
     for _ in range(10):
         time.sleep(0.1)
-        if escutou_tecla_parar():
+        if tecla_pressionada():
             pausar_cronometro()  # Altera o estado para PAUSADO, forçando o loop principal a voltar pro menu
             break
 
@@ -71,3 +73,5 @@ def executar_app():
         
         if get_estado() == Estado.RODANDO and get_tempo_final() <= get_tempo_atual():
             encerrar_cronometro()
+
+    print("Encerrando o cronômetro. Até a próxima!")

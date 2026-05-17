@@ -21,7 +21,7 @@ def get_tempo_atual():
     return datetime.datetime.now()
 
 # Função para detectar se o usuário pressionou a tecla Enter para pausar/parar o cronômetro
-# Tive que pesquisar
+# Tive que pesquisar para não recorrer a funções assíncronas
 def tecla_pressionada():
     """Verifica se o usuário pressionou uma tecla para pausar/parar (Enter)."""
     # Implementação para Windows
