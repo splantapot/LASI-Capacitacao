@@ -19,7 +19,7 @@ def prLightGray(s): print("\033[97m {}\033[00m".format(s))
 def prBlack(s): print("\033[90m {}\033[00m".format(s))  # Corrected from 98 to 90 (standard ANSI)
 
 # Escrever Título Formatado
-def escrever_titulo(titulo:str, tam_linha:int = 20) -> None:
+def escrever_titulo(titulo:str, tam_linha:int = 40) -> None:
     """Escreve um título no formato indicado em uma linha de tamanho especificado."""
     # tam_linha: Tamanho da linha de um título
     espaco = int((tam_linha-len(titulo))/2)     # Espaçamento para centralizar o título
