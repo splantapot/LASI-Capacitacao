@@ -8,22 +8,19 @@ def solicitar_entrada(nome_modo:str, dicas:str, avisos:str) -> None:
     prLightGray(dicas)
     prPurple(avisos)
 
-def soma() -> None:
-    """Executa uma soma completa."""
-    cls()
-    escrever_titulo("Modo: Soma / Subtração")
+def somar_subtrair() -> None:
+    """Executa uma soma/subtração completa."""
     solicitar_entrada(
-        "Soma",
-        "Escreva uma soma algébrica a ser calculada, separados por '+'.\n" +
+        "Soma / Subtração",
+        "Escreva a expressão a ser calculada, separados por '+' ou '-'.\n" +
         "Pressione 'Enter' para realizar o cálculo",
         "Nota: Valores não numéricos serão ignorados.\n" +
-        "Espaços nao são obrigatórios. Aceita vírgula.\n" +
+        "Espaços não são obrigatórios. Aceita vírgula.\n" +
         "Exemplo:\n" +
         "2 + 3 + a + nao + 1 - 1 = 2 + 3 + 1 - 1 = 0"
     )
     entrada = input(">>").replace(" ", "").replace(",", ".").replace("-","+-").split("+")
     soma:float = 0
-    numeros = []
     for v in entrada:
         try:
             soma += float(v)
@@ -31,4 +28,34 @@ def soma() -> None:
     
     print(f"Soma: {soma}")
     input("Tecle 'Enter' para repetir...")
-    
+
+def multiplicar_dividir() -> None:
+    """Executa uma multiplicação/divisão completa."""
+    solicitar_entrada(
+        "Multiplicação / Divisão",
+        "Escreva expressão a ser calculada, separados por '*' ou '/'.\n" +
+        "Pressione 'Enter' para realizar o cálculo",
+        "Nota: Valores não numéricos serão ignorados.\n" +
+        "'*' ou '/' em sequência (como // ou **) serão contados apenas uma vez (como / e *)\n"
+        "Espaços nao são obrigatórios. Aceita vírgula.\n" +
+        "Exemplo:\n" +
+        "2 * 3 * a * nao * 1*-1 = 2 * 3 * 1 *- 1 = -6"
+    )
+    entrada = input(">>").replace(" ", "").replace(",", ".")
+    eNegativo = False if (entrada.count("-")%2==0) else True 
+    entrada = entrada.replace("-","").split("*")
+    # print(entrada)
+    resultado:float = 1
+    for v in entrada:
+        try:
+            eProduto = True if (v.count('/') == 0) else False 
+            if (eProduto):
+                resultado *= float(v)
+            else:
+                resultado *= float(v.split("/")[0])
+                resultado /= float(v.split("/")[v.count("/")])
+        except ValueError: pass #Ignora entrada inválida
+    if eNegativo:
+        resultado *= -1
+    print(f"Resultado: {resultado}")
+    input("Tecle 'Enter' para repetir...")

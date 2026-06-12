@@ -9,10 +9,8 @@ def encerrar():
     executando = False
 
 opcoes = [
-    ["Somar/Sutrair", soma],
-    ["Subtrair", lambda _: _],
-    ["Multiplicar", lambda _: _],
-    ["Dividir", lambda _: _],
+    ["Somar/Sutrair", somar_subtrair],
+    ["Multiplicar/Dividir", multiplicar_dividir],
     ["Projetar Contador Síncrono", lambda _: _],
     ["Sair", encerrar],
 ]
@@ -43,7 +41,8 @@ def main():
 
         # Executa ação correspondente
         try:
-            opcoes[opcao-1][1]()
+            while True:
+                opcoes[opcao-1][1]()
         except TypeError:
             cls()
             prYellow("Função não especificada no código.") #Bom para depuração
