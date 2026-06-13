@@ -53,15 +53,40 @@ def transposta(matriz:List[List]) -> List[List]:
     return nova_matriz
 
 
-matriz = [
-    [1, 2, 3],
-    [4, 5, 6]
+def produto_matricial(matrizA:List[List], matrizB:List[List]) -> Tuple[List[List], int]:
+    """Calcula o produto matricial entre duas matrizes. Retorna (matriz_produto, err)"""
+    if (not matrizA or not matrizB): return ([], -1)   # Erro -1 se alguma matriz não tiver linhas
+    linhasA = len(matrizA)
+    linhasB = len(matrizB)
+    colunasA = len(matrizA[0])
+    colunasB = len(matrizB[0])
+    if (colunasA * colunasB == 0): return ([], -1)   # Erro -1 se alguma matriz não tiver colunas
+
+    if (colunasA != linhasB): return ([], -2)   # Erro -2, produto incompatível
+
+    nova_matriz = [[0 for _ in range(colunasB)] for _ in range(linhasA)]
+
+    for i in range(linhasA):
+        for j in range(colunasB):
+            for k in range(colunasA):
+                nova_matriz[i][j] += matrizA[i][k]*matrizB[k][j]
+    return (nova_matriz, 0)
+
+matrizA = [
+    [2, 0],
+    [0, 2]
 ]
+
+matrizB = [
+    [1],
+    [4]
+]
+
 
 # x, err = determinante([
 #     [1, -1],
 #     [1, 6]
 # ])
 
-for linha in transposta(matriz):
+for linha in produto_matricial(matrizA, matrizB)[0]:
     print(linha)
