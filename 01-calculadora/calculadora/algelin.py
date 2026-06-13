@@ -3,14 +3,14 @@ from typing import List, Tuple
 
 # Módulo algelin: Álgebra Linear
 
-# Funções de interação com o usuário
-
+# =========================================================
 # Funcões que realizam cálculos
+# =========================================================
 def determinante(matriz:List[List]) -> Tuple[float, int]:
     """Calcula o determinante da matriz dada. Retorna um Tuple: (valor, erro)"""
     ordem = len(matriz)
-    if (ordem == 0): return (0, -1)              # Retorna erro -1 se a matriz estiver vazia
-    if (ordem != len(matriz[0])): return (0, -2) # Retorna erro -2 se a matriz não for quadrada
+    if (ordem == 0): return (1, 0)              # Det de matriz vazia
+    if (ordem != len(matriz[0])): return (1, -1) # Retorna erro -1 se a matriz não for quadrada
 
     # Prossegue para o cálculo
     valor = 0
@@ -31,15 +31,15 @@ def determinante(matriz:List[List]) -> Tuple[float, int]:
                 if (i != 0)
             ]
             
-            print(matriz)
+            # print(matriz)
             det, err = determinante(nova_matriz)
             cofator = det * sinal * elemento
             valor += cofator
 
     return (valor, 0)
 
-def transposta(matriz:List[List]) -> List[List]:
-    """Retorna a matriz transposta da matriz dada."""
+def matriz_transposta(matriz:List[List]) -> List[List]:
+    """Retorna a matriz transposta da matriz dada. Retorna a matriz transposta."""
     # Retorna uma matriz vazia, caso seja inserida uma matriz vazia
     if (len(matriz) == 0 or len(matriz[0]) == 0): return []
 
@@ -52,9 +52,32 @@ def transposta(matriz:List[List]) -> List[List]:
     ]
     return nova_matriz
 
+def matriz_cofatores(matriz:List[List]) -> List[List]:
+    """Retorna a matriz dos cofatores da matriz dada. Retorna um Tuple: (valor, erro)"""
+    ordem = len(matriz)
+    if (ordem == 0): return (0, -1)              # Retorna erro -1 se a matriz estiver vazia
+    if (ordem != len(matriz[0])): return (0, -2) # Retorna erro -2 se a matriz não for quadrada
+    
+    # Prossegue para o cálculo
+
+    # Inicializa uma nova matriz
+    nova_matriz = [[0 for _ in range(ordem)] for _ in range(ordem)]
+    # Percorrendo a nova matriz
+    for i in range(ordem):
+        for j in range(ordem):
+            sinal = 1 if ((i+j)%2==0) else -1
+            matriz_reduzida = [
+                [ matriz[m][n] for n in range(ordem) if (n != j) ]
+                for m in range(ordem) if (m != i)
+            ]
+            det, err = determinante(matriz_reduzida)
+            cofator = det*sinal
+            nova_matriz[i][j] = cofator
+
+    return (nova_matriz, 0)
 
 def produto_matricial(matrizA:List[List], matrizB:List[List]) -> Tuple[List[List], int]:
-    """Calcula o produto matricial entre duas matrizes. Retorna (matriz_produto, err)"""
+    """Calcula o produto matricial entre duas matrizes. Retorna um Tuple: (matriz_produto, err)"""
     if (not matrizA or not matrizB): return ([], -1)   # Erro -1 se alguma matriz não tiver linhas
     linhasA = len(matrizA)
     linhasB = len(matrizB)
@@ -72,21 +95,6 @@ def produto_matricial(matrizA:List[List], matrizB:List[List]) -> Tuple[List[List
                 nova_matriz[i][j] += matrizA[i][k]*matrizB[k][j]
     return (nova_matriz, 0)
 
-matrizA = [
-    [2, 0],
-    [0, 2]
-]
-
-matrizB = [
-    [1],
-    [4]
-]
-
-
-# x, err = determinante([
-#     [1, -1],
-#     [1, 6]
-# ])
-
-for linha in produto_matricial(matrizA, matrizB)[0]:
-    print(linha)
+# =========================================================
+# Funções de interação com o usuário
+# =========================================================

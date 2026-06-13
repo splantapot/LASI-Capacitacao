@@ -13,7 +13,7 @@ OPCOES_MENU = [
     ["Somar/Sutrair", somar_subtrair],
     ["Multiplicar/Dividir", multiplicar_dividir],
     ["Projetar Contador Síncrono", lambda _: _],
-    ["Resolver Sistema Linear", lambda _: _],
+    ["Resolver Sistema Linear Quadrado", lambda _: _],
     ["Sair", encerrar]
 ]
 
