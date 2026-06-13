@@ -1,4 +1,6 @@
-from .console import *
+from calculadora.console import *
+
+# Módulo basic: Matemática básica
 
 def solicitar_entrada(nome_modo:str, dicas:str, avisos:str) -> None:
     """Escrever os textos explicativos no console"""
