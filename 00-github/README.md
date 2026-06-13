@@ -1,3 +1,5 @@
+[Voltar](../README.md)
+
 # Projeto de Capacitação 01 - Cronômetro de Estudos
 
 Projeto desenvolvido durante o processo de capacitação da LASI, executado em maio de 2026.

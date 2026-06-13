@@ -12,7 +12,8 @@ opcoes = [
     ["Somar/Sutrair", somar_subtrair],
     ["Multiplicar/Dividir", multiplicar_dividir],
     ["Projetar Contador Síncrono", lambda _: _],
-    ["Sair", encerrar],
+    ["Resolver Sistema Linear", lambda _: _],
+    ["Sair", encerrar]
 ]
 
 def main():

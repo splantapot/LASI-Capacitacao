@@ -17,7 +17,7 @@ def somar_subtrair() -> None:
         "Nota: Valores não numéricos serão ignorados.\n" +
         "Espaços não são obrigatórios. Aceita vírgula.\n" +
         "Exemplo:\n" +
-        "2 + 3 + a + nao + 1 - 1 = 2 + 3 + 1 - 1 = 0"
+        "2 + 3 + a + nao + 1 - 1 = 2 + 3 + 1 - 1 = 5"
     )
     entrada = input(">>").replace(" ", "").replace(",", ".").replace("-","+-").split("+")
     soma:float = 0
@@ -51,6 +51,7 @@ def multiplicar_dividir() -> None:
             eProduto = True if (v.count('/') == 0) else False 
             if (eProduto):
                 resultado *= float(v)
+            # Corrigir bug para divisões sucessivas
             else:
                 resultado *= float(v.split("/")[0])
                 resultado /= float(v.split("/")[v.count("/")])
