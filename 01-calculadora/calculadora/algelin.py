@@ -38,9 +38,30 @@ def determinante(matriz:List[List]) -> Tuple[float, int]:
 
     return (valor, 0)
 
-x, err = determinante([
-    [1, -1],
-    [1, 6]
-])
+def transposta(matriz:List[List]) -> List[List]:
+    """Retorna a matriz transposta da matriz dada."""
+    # Retorna uma matriz vazia, caso seja inserida uma matriz vazia
+    if (len(matriz) == 0 or len(matriz[0]) == 0): return []
 
-print(x)
+    nova_matriz = [
+        [
+            matriz[i][j]
+            for i in range( len(matriz) )
+        ]
+        for j in range( len(matriz[0]) )
+    ]
+    return nova_matriz
+
+
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
+
+# x, err = determinante([
+#     [1, -1],
+#     [1, 6]
+# ])
+
+for linha in transposta(matriz):
+    print(linha)
