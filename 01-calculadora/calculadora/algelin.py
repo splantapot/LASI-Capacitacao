@@ -95,6 +95,16 @@ def produto_matricial(matrizA:List[List], matrizB:List[List]) -> Tuple[List[List
                 nova_matriz[i][j] += matrizA[i][k]*matrizB[k][j]
     return (nova_matriz, 0)
 
+def produto_matriz_escalar(matriz:List[List], escalar:float) -> List[List]:
+    """Realiza o produto de uma matriz por um escalar. Retorna a matriz resultante, ou uma matriz vazia em caso de erro."""
+    if (not matriz): return []
+    m = len(matriz)
+    for i in range(m):
+        n = len(matriz[i])
+        for j in range(n):
+            matriz[i][j] *= escalar
+    return matriz
+
 # =========================================================
 # Funções de interação com o usuário
 # =========================================================
