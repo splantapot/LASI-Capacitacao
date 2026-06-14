@@ -1,6 +1,7 @@
 # Funções importadas
 from calculadora.console import *
 from calculadora.basic import *
+from calculadora.algelin import *
 
 # Controle de estado do App
 executando = True   # Variável de controle
@@ -13,7 +14,7 @@ OPCOES_MENU = [
     ["Somar/Sutrair", somar_subtrair],
     ["Multiplicar/Dividir", multiplicar_dividir],
     ["Projetar Contador Síncrono", lambda _: _],
-    ["Resolver Sistema Linear Quadrado", lambda _: _],
+    ["Resolver Sistema Linear Quadrado", solicitar_entrada_sistema],
     ["Sair", encerrar]
 ]
 

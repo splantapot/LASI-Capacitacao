@@ -1,4 +1,4 @@
-# from calculadora.console import *
+from calculadora.console import *
 from typing import List, Tuple
 
 # Módulo algelin: Álgebra Linear
@@ -98,3 +98,30 @@ def produto_matricial(matrizA:List[List], matrizB:List[List]) -> Tuple[List[List
 # =========================================================
 # Funções de interação com o usuário
 # =========================================================
+
+def solicitar_entrada_sistema() -> None:
+    """Executa a resolução do sistema linear."""
+
+    def construir_secao() -> None:
+        cls()
+        prYellow("Tecle 'Ctrl+C' para voltar ao menu.")
+        escrever_titulo("Modo: Sistema Linear Quadrado", 100)
+        prLightGray("Esse modo serve para calcular a resolução de um Sistema Linear Quadrado.")
+        prLightGray("-> (número de icógnitas igual ao número de equações)")
+
+    variaveis:List[str] = []
+    var_validas:bool = False
+
+    while not var_validas:
+        construir_secao()
+        print("Insira as variáveis (espaçadas por /) ou deixe em branco para inserir a matriz dos coeficientes:")
+        texto = input(">> ")
+        variaveis = texto.split('/')
+        # Verifica se alguma variável é inválida
+        var_validas = True
+        for v in variaveis:
+            if (not v.isalpha()): var_validas = False
+        
+
+
+    input("Tecle 'Enter' para repetir...")
