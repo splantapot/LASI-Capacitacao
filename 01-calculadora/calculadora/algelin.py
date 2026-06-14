@@ -183,6 +183,7 @@ def solicitar_entrada_sistema() -> None:
         prYellow(f"Determinante: {det}")
         try:
             inv_det = 1 / det
+            # Depois, seria bom padronizar a resposta desses módulos
             matriz_cof, err = matriz_cofatores(matriz)
             matriz_adjunta = matriz_transposta(matriz_cof)
             matriz_inversa = (produto_matriz_escalar(matriz_adjunta, inv_det))
