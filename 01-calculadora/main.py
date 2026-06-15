@@ -12,8 +12,8 @@ def encerrar():
 
 # Cadastro das opções do menu
 OPCOES_MENU = [
-    ["Somar/Sutrair", somar_subtrair],
-    ["Multiplicar/Dividir", multiplicar_dividir],
+    ["Somar/Sutrair", solicitar_somar_subtrair],
+    ["Multiplicar/Dividir", solicitar_multiplicar_dividir],
     ["Projetar Contador Síncrono", solicitar_entrada_contador],
     ["Resolver Sistema Linear Quadrado", solicitar_entrada_sistema],
     ["Sair", encerrar]
@@ -47,7 +47,7 @@ def main():
 
         # Executa ação correspondente
         try:
-            while True:
+            while executando:
                 OPCOES_MENU[opcao-1][1]()
         except TypeError:
             cls()
