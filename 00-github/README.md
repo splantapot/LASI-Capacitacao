@@ -1,6 +1,6 @@
 [Voltar](../README.md)
 
-# Projeto de Capacitação 01 - Cronômetro de Estudos
+# Projeto de Capacitação 00 - Cronômetro de Estudos
 
 Projeto desenvolvido durante o processo de capacitação da LASI, executado em maio de 2026.
 Desenvolvedor: João Victor (splantapot)
