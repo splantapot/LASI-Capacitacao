@@ -2,6 +2,7 @@
 from calculadora.console import *
 from calculadora.basic import *
 from calculadora.algelin import *
+from calculadora.circ_digitais import *
 
 # Controle de estado do App
 executando = True   # Variável de controle
@@ -13,7 +14,7 @@ def encerrar():
 OPCOES_MENU = [
     ["Somar/Sutrair", somar_subtrair],
     ["Multiplicar/Dividir", multiplicar_dividir],
-    ["Projetar Contador Síncrono", lambda _: _],
+    ["Projetar Contador Síncrono", solicitar_entrada_contador],
     ["Resolver Sistema Linear Quadrado", solicitar_entrada_sistema],
     ["Sair", encerrar]
 ]
